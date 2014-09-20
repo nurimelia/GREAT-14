@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="pressed_button">#33b4c833</color>
+    <color name="actionbar_text">#0000FF</color>
+
 </resources>
