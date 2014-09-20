@@ -1,0 +1,106 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="my.i906.todolist.fragment.TodoEditFragment">
+
+    <LinearLayout
+        android:id="@+id/todoedit_buttons"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="?android:actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:divider="?android:attr/dividerVertical"
+        android:dividerPadding="12dp"
+        android:showDividers="middle">
+
+        <FrameLayout
+            android:id="@+id/action_discard"
+            style="?android:actionButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_borderless"
+            android:clickable="true">
+
+            <TextView
+                style="?android:actionBarTabTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableLeft="@drawable/ic_action_cancel"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:paddingRight="20dp"
+                android:text="@string/label_discard"
+                android:textColor="?android:textColorPrimary" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/action_save"
+            style="?android:actionButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_borderless"
+            android:clickable="true">
+
+            <TextView
+                style="?android:actionBarTabTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableLeft="@drawable/ic_action_accept"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:paddingRight="20dp"
+                android:text="@string/label_save"
+                android:textColor="?android:textColorPrimary" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <View style="@style/Separator" android:layout_above="@id/todoedit_buttons" />
+
+    <LinearLayout
+        android:id="@+id/todoedit_form"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_above="@id/todoedit_buttons"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/label_title" />
+
+        <EditText
+            android:id="@+id/todoedit_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textCapWords" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/label_description" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/todoedit_description" />
+
+    </LinearLayout>
+
+</RelativeLayout>
