@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <color name="cyan">#A9F5A9</color>
     <string name="app_name">TodoList</string>
 
     <!-- MainActivity -->
@@ -15,6 +16,7 @@
     <string name="label_duraction">Duraction</string>
     <string name="label_discard">Discard</string>
     <string name="label_save">Save</string>
+    <string name="label_Alarm">Alarm</string>
 
     <string-array name="time_array">
         <item>seconds</item>

@@ -11,7 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
-
+import android.widget.EditText;
 import my.i906.todolist.fragment.TodoEditFragment;
 import my.i906.todolist.fragment.TodoListFragment;
 
@@ -28,6 +28,14 @@ public class MainActivity extends Activity implements TodoListFragment.Callbacks
                     .commit();
         }
     }
+
+
+    // Search EditText
+    //EditText inputSearch;
+
+    //inputSearch = (EditText) findViewById(R.id.inputSearch);
+
+
 
     @Override
     public void onNewItemButtonClicked() {
