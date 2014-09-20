@@ -66,15 +66,15 @@
     <View style="@style/Separator" android:layout_above="@id/todoedit_buttons" />
 
     <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_above="@id/todoedit_buttons">
 
     <LinearLayout
         android:id="@+id/todoedit_form"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_above="@id/todoedit_buttons"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp">
 
