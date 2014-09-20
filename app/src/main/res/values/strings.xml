@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="cyan">#58FAF4</color>
+    <color name="cyan">#A9F5A9</color>
     <string name="app_name">TodoList</string>
 
     <!-- MainActivity -->
