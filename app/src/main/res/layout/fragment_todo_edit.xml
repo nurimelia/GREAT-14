@@ -65,6 +65,10 @@
 
     <View style="@style/Separator" android:layout_above="@id/todoedit_buttons" />
 
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
     <LinearLayout
         android:id="@+id/todoedit_form"
         android:layout_width="match_parent"
@@ -73,6 +77,7 @@
         android:layout_above="@id/todoedit_buttons"
         android:orientation="vertical"
         android:padding="16dp">
+
 
         <TextView
             android:layout_width="match_parent"
@@ -101,6 +106,21 @@
             android:ems="10"
             android:id="@+id/todoedit_description" />
 
-    </LinearLayout>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/todo_time" />
 
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/time_array"
+            android:ems="10"
+            android:id="@+id/todo_duraction" />
+
+
+    </LinearLayout>
+    </ScrollView>
 </RelativeLayout>

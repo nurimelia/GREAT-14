@@ -11,7 +11,15 @@
 
     <string name="label_title">Title</string>
     <string name="label_description">Description</string>
+    <string name="label_time">Time</string>
+    <string name="label_duraction">Duraction</string>
     <string name="label_discard">Discard</string>
     <string name="label_save">Save</string>
+
+    <string-array name="time_array">
+        <item>seconds</item>
+        <item>minutes</item>
+        <item>hours</item>
+    </string-array>
 
 </resources>

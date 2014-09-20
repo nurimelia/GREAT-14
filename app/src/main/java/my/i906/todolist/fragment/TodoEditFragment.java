@@ -1,11 +1,15 @@
 package my.i906.todolist.fragment;
 
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.Fragment;
 import android.app.LoaderManager;
+import android.app.PendingIntent;
 import android.content.ContentUris;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
@@ -14,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -21,6 +26,7 @@ import butterknife.OnClick;
 import my.i906.todolist.R;
 import my.i906.todolist.contentprovider.TodoContentProvider;
 import my.i906.todolist.model.Todo;
+import my.i906.todolist.receiver.AlarmReceiver;
 
 public class TodoEditFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -35,6 +41,13 @@ public class TodoEditFragment extends Fragment implements LoaderManager.LoaderCa
 
     @InjectView(R.id.todoedit_description)
     protected EditText mDescriptionView;
+
+    //
+    @InjectView(R.id.todo_time)
+    protected EditText mTimeView;
+
+    @InjectView(R.id.todo_duraction)
+    protected Spinner mDuractionView;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -79,6 +92,9 @@ public class TodoEditFragment extends Fragment implements LoaderManager.LoaderCa
 
         String title = mTitleView.getText().toString();
         String description = mDescriptionView.getText().toString();
+        String new_time = mTimeView.getText().toString();
+
+        int new_duraction = mDuractionView.getSelectedItemPosition();
 
         if (title.length() == 0 && description.length() == 0) {
             return;
@@ -87,6 +103,9 @@ public class TodoEditFragment extends Fragment implements LoaderManager.LoaderCa
         ContentValues values = new ContentValues();
         values.put(Todo.COLUMN_TITLE, title);
         values.put(Todo.COLUMN_DESCRIPTION, description);
+        values.put(Todo.COLUMN_TIME, new_time);
+
+        values.put(Todo.COLUMN_DURACTION, new_duraction);
 
         if (mTodoId != -1) {
             getActivity().getContentResolver().update(mItemUri, values, null, null);
@@ -96,6 +115,30 @@ public class TodoEditFragment extends Fragment implements LoaderManager.LoaderCa
         }
 
         mCallbacks.onItemSaved(mTodoId);
+
+        AlarmManager am = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+        Intent rem = new Intent(getActivity(), AlarmReceiver.class);
+        rem.putExtra("todoedit_title", title);
+        rem.putExtra("todoedit_description", description);
+        rem.putExtra("todoedit_id", mTodoId);
+
+        long trigger = getDuraction(Long.parseLong(new_time), new_duraction);
+
+        PendingIntent pi = PendingIntent.getBroadcast(getActivity(), 0, rem, 0);
+        am.set(AlarmManager.RTC, trigger, pi);
+
+    }
+
+    private long getDuraction(long time, int duraction) {
+        long milliseconds = 1000;
+        long minutes = milliseconds * 60;
+        long hours = minutes * 60;
+        long now = System.currentTimeMillis();
+
+        if (duraction == 0) return now + time * milliseconds;
+        else if (duraction == 1) return now + time * minutes;
+        else if (duraction == 2) return now + time * hours;
+        else return now;
     }
 
     @OnClick(R.id.action_discard)
@@ -120,9 +163,13 @@ public class TodoEditFragment extends Fragment implements LoaderManager.LoaderCa
 
             int iTitle = data.getColumnIndex(Todo.COLUMN_TITLE);
             int iDescription = data.getColumnIndex(Todo.COLUMN_DESCRIPTION);
+            int iTime = data.getColumnIndex(Todo.COLUMN_TIME);
+            int iDuraction = data.getColumnIndex(Todo.COLUMN_DURACTION);
 
             mTitleView.setText(data.getString(iTitle));
             mDescriptionView.setText(data.getString(iDescription));
+            mTimeView.setText(data.getString(iTime));
+            mDuractionView.setSelection(data.getInt(iDuraction));
         }
     }
 

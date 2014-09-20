@@ -3,7 +3,6 @@ package my.i906.todolist;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -55,7 +54,7 @@ public class MainActivity extends Activity implements TodoListFragment.Callbacks
 
         getFragmentManager()
                 .beginTransaction()
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
                 .replace(R.id.container, tef, "FRAG_TODO_EDIT")
                 .addToBackStack("FRAG_TODO_EDIT")
                 .commit();
@@ -64,7 +63,7 @@ public class MainActivity extends Activity implements TodoListFragment.Callbacks
     private void showListFragment() {
         getFragmentManager()
                 .beginTransaction()
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
                 .replace(R.id.container, new TodoListFragment(), "FRAG_TODO_LIST")
                 .commit();
     }

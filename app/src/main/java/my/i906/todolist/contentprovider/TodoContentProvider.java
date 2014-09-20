@@ -150,7 +150,10 @@ public class TodoContentProvider extends ContentProvider {
         String[] available = {
                 Todo.COLUMN_ID,
                 Todo.COLUMN_TITLE,
-                Todo.COLUMN_DESCRIPTION
+                Todo.COLUMN_DESCRIPTION,
+                Todo.COLUMN_TIME,
+                Todo.COLUMN_DURACTION
+
         };
 
         if (projection != null) {

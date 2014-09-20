@@ -14,15 +14,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_CREATE = "CREATE TABLE " + Todo.TABLE_TODO + " ("
             + Todo.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + Todo.COLUMN_TITLE + " TEXT NOT NULL, "
-            + Todo.COLUMN_DESCRIPTION + " TEXT NOT NULL"
+            + Todo.COLUMN_DESCRIPTION + " TEXT NOT NULL, "
+            + Todo.COLUMN_TIME + " INTEGER, "
+            + Todo.COLUMN_DURACTION + " INTEGER"
             + ");";
 
     private static final String DUMMY_CONTENTS = "INSERT INTO " + Todo.TABLE_TODO + " ("
             + Todo.COLUMN_TITLE + ","
-            + Todo.COLUMN_DESCRIPTION + ")"
+            + Todo.COLUMN_DESCRIPTION + ","
+            + Todo.COLUMN_TIME + ","
+            + Todo.COLUMN_DURACTION + ")"
             + "VALUES ("
             + "'First note', "
-            + "'Some very long description here.'"
+            + "'Some very long description here.',"
+            + "300,"
+            + "0"
             + ");";
 
     public DatabaseHelper(Context context) {
