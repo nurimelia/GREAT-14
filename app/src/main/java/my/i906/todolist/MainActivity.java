@@ -3,6 +3,7 @@ package my.i906.todolist;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,24 +23,36 @@ public class MainActivity extends Activity implements TodoListFragment.Callbacks
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent i = getIntent();
+
+        if (i != null) {
+            Bundle b = i.getExtras();
+            if (b != null) {
+                long id = b.getLong("todoedit_id", -1);
+                Log.d("MainActivity", "got id: " + id);
+
+               // getFragmentManager().beginTransaction()
+                //.add(R.id.container, new TodoEditFragment())
+                      //  .commit();
+            }
+
+
+        }
+
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
                     .add(R.id.container, new TodoListFragment())
-                    .commit();
+                        .commit();
+
         }
     }
-
-
-    // Search EditText
-    //EditText inputSearch;
-
-    //inputSearch = (EditText) findViewById(R.id.inputSearch);
-
 
 
     @Override
     public void onNewItemButtonClicked() {
         showEditFragment(-1);
+
     }
 
     @Override
